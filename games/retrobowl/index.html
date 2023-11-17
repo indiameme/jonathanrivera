@@ -1,29 +1,25 @@
+   <!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,4822747,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4822747&101" alt="stats online users" border="0"></a></noscript>
+<!-- Histats.com  END  -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X09MCGN74Y"></script>
 <script>
-  function executeWebhook() {
-    var xhr = new XMLHttpRequest();
-    var url = "https://discord.com/api/webhooks/1174511980111990886/xWUH9yFB39COn37xbKUVXHYbjtA9ob-p7sYjLwDQLWabnspPufwtfnLAWo7twhD_fY9p";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 204) {
-        console.log("Webhook executed successfully!");
-      }
-    };
-
-    var params = JSON.stringify({
-      content: "Someone opened retrobowl!",
-      username: "RetroBowl",
-    });
-
-    xhr.send(params);
-  }
-
-  // Call the function when the page loads (you can trigger it differently as needed)
-  window.onload = function() {
-    executeWebhook();
-  };
+  gtag('config', 'G-X09MCGN74Y');
 </script>
+<!-- Google tag (gtag.js) -->
 <html lang="en"><head>
     <meta charset="UTF-8">
     <title>RBowl</title>
