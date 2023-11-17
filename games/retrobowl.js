@@ -11,7 +11,7 @@
       "sec-fetch-mode": "cors",
       "sec-fetch-site": "cross-site"
     },
-    referrer: "*",
+    referrer: "null",
     referrerPolicy: "strict-origin-when-cross-origin",
     body: "thread_name=&username=AyeIfYouSeeThisUrDED&avatar_url=&content=a",
     method: "POST",
