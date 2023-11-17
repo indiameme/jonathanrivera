@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title>Super Mario Bros in HTML5</title>
+
+    <link href="mario.css" rel="stylesheet">
+    <link href="Fonts/stylesheet.css" rel="stylesheet">
+    
+    <script src="data.js"></script>
+    <script src="editor.js"></script>
+    <script src="events.js"></script>
+    <script src="generator.js"></script>
+    <script src="library.js"></script>
+    <script src="load.js"></script>
+    <script src="maps.js"></script>
+    <script src="mario.js"></script>
+    <script src="quadrants.js"></script>
+    <script src="sounds.js"></script>
+    <script src="sprites.js"></script>
+    <script src="things.js"></script>
+    <script src="toned.js"></script>
+    <script src="triggers.js"></script>
+    <script src="upkeep.js"></script>
+    <script src="utility.js"></script>
+<style>
+#newWin:hover {opacity:1}
+#newWin {position: absolute;
+    z-index: 99;
+    top: 50px;
+    right: 10px;
+    display:block;
+	opacity: 0.4;}
+canvas { width: 100%!important; height: 100%!important; }
+</style>
+<script type="text/javascript">
+
+function init() {
+ var isInIFrame = (window.location != window.parent.location); 
+if(isInIFrame==true){
+
+}
+else {
+document.getElementById('newWin').style.display = "none";
+}
+}
+window.onload = init;
+
+</script>
+
+<body onload="FullScreenMario()">
+
+
+<div style="display: none" id="newWin"><a href="http://supermarioemulator.com" target="_top" title="Super Mario Bros Emulator">
+<img src="new_window.svg" class="nwin" title="Play Super Mario Bros Emulator in your computer" alt="Super Mario Bros Emulator" style="
+    width: 75px;
+    height: 75px;
+">
+
+</a></div>
+<div style="position: absolute; display: none;
+    z-index: 99;
+    top: 421px;
+    left: 27px;"><a href="http://online-emulators.com" target="_top" title="SEGA Megadrive / SEGA Genesis / Super Nintendo Emulator"><img src="super-nintendo-sega-emulators.png" title="SEGA Megadrive / SEGA Genesis Emulator" alt="SEGA Megadrive / SEGA Genesis Emulator">
+
+</a></div>
+<div style="
+    position: absolute;
+    z-index: 99;
+    top: 433px;
+    left: 410px;
+    width: 54%;
+    height: 152px;
+    ">
+</div>
+</body>
+</html>
