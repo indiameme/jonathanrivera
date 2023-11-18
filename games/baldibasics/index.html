@@ -1,32 +1,38 @@
 <html>
 
-<head>
-    <title>Baldi's Basics | 3kh0</title>
-    <link rel="icon" type="image/png" href="/favicon.ico" />
-    <script type="text/javascript" src="/js/main.js"></script>
 
-    <link rel="stylesheet" href="TemplateData/style.css" />
-    <script src="TemplateData/UnityProgress.js"></script>
-    <script src="baldi.js"></script>
-    <script>
-        var gameInstance = UnityLoader.instantiate("gameContainer", "baldi.json", {
-            onProgress: UnityProgress,
-            Module: {
-                onRuntimeInitialized: function() {
-                    UnityProgress(gameInstance, "complete");
-                },
-            },
-        });
-    </script>
+<!-- Mirrored from player.work/baldis-basics/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Nov 2023 00:40:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <title>Baldi's Basics | 3kh0</title>
+  <link rel="icon" type="image/png" href="https://player.work/favicon.ico" />
+  <script type="text/javascript" src="../js/main.js"></script>
+
+  <link rel="stylesheet" href="TemplateData/style.css" />
+  <script src="TemplateData/UnityProgress.js"></script>
+  <script src="baldi.js"></script>
+  <script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", "baldi.json", {
+      onProgress: UnityProgress,
+      Module: {
+        onRuntimeInitialized: function () {
+          UnityProgress(gameInstance, "complete");
+        },
+      },
+    });
+  </script>
 </head>
 
 <body style="margin: 0;">
-    <div class="webgl-content">
-        <div id="unityContainer" style="width: 960px; height: 600px; padding: 0px; margin: 0px; border: 0px; position: relative; background: rgb(35, 31, 32);">
-            <div id="gameContainer" style="width: 800px; height: 560px; margin: auto;"></div>
-        </div>
-        <script src="firebase-app.js"></script>
+  <div class="webgl-content">
+    <div id="unityContainer"
+      style="width: 960px; height: 600px; padding: 0px; margin: 0px; border: 0px; position: relative; background: rgb(35, 31, 32);">
+      <div id="gameContainer" style="width: 800px; height: 560px; margin: auto;"></div>
     </div>
+    <script src="firebase-app.js"></script>
+  </div>
 </body>
 
+
+<!-- Mirrored from player.work/baldis-basics/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Nov 2023 00:40:26 GMT -->
 </html>
