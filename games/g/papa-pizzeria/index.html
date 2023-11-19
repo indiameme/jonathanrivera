@@ -1,206 +1,25 @@
-<html><head><style>:root {
-    --ruffle-blue: #37528c;
-    --ruffle-orange: #ffad33;
-    --splash-screen-background: #31497d;
-}
-
-body {
-    position: absolute;
-    inset: 0;
-    padding: 0;
-    margin: 0;
-    font-family: Lato, sans-serif;
-    display: flex;
-    flex-flow: column;
-    background: black;
-}
-
-#main {
-    position: relative;
-    flex: 1;
-}
-
-#overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    border: 8px dashed var(--ruffle-orange);
-    border-radius: 30px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
-    margin: 10px 5px;
-}
-
-#overlay.drag {
-    opacity: 1;
-    transition-timing-function: ease-out;
-}
-
-#player {
-    position: absolute;
-    inset: 0;
-    width: auto;
-    height: auto;
-    margin: 10px 0;
-}
-
-#nav {
-    width: 100%;
-    background: var(--ruffle-blue);
-    box-shadow: 0 3px 6px 5px var(--ruffle-blue);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    color: white;
-    padding: 10px 0 5px;
-    margin-bottom: 5px;
-}
-
-#title {
-    transition: opacity 0.5s;
-}
-
-#title:hover {
-    opacity: 0.5;
-}
-
-#title img {
-    height: 32px;
-}
-
-#file-picker select,
-#file-picker input,
-#author {
-    margin-left: 5px;
-}
-
-#local-file-container,
-#sample-swfs-container {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-#local-file {
-    width: 0;
-    opacity: 0;
-    position: absolute;
-}
-
-#local-file-label {
-    color: var(--ruffle-blue);
-    padding: 3px 10px;
-    margin: 5px 2px;
-    cursor: pointer;
-    border-radius: 50px;
-    background-color: white;
-}
-
-#local-file-name {
-    min-width: 150px;
-    display: inline-block;
-    font-size: smaller;
-}
-
-#sample-swfs {
-    background-color: white;
-    color: var(--ruffle-blue);
-    border: 1px solid white;
-    border-radius: 5px;
-}
-
-#author-container {
-    font-size: small;
-}
-
-#author {
-    color: var(--ruffle-orange);
-}
-
-.hidden {
-    display: none !important;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.modal-content {
-    background-color: var(--ruffle-blue);
-    margin: 15vh auto;
-    padding: 20px;
-    border: 2px solid white;
-    width: 300px;
-    height: 270px;
-    overflow: auto;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#open-modal,
-#reload-swf {
-    vertical-align: middle;
-    cursor: pointer;
-}
-
-#metadata {
-    margin: 0 auto;
-}
-
-#metadata td {
-    padding: 2px 1px;
-    border: 1px solid #ddd;
-    color: var(--ruffle-orange);
-}
-
-#metadata tr td:nth-child(1) {
-    font-weight: bold;
-    padding: 0 10px;
-}
-
-@media only screen and (width <= 800px) {
-    #local-file-container,
-    #sample-swfs-container {
-        display: block;
-    }
-
-    #local-file-container {
-        margin-bottom: 10px;
-    }
-}
-
-@media only screen and (width <= 600px) {
-    #local-file-static-label,
-    #sample-swfs-label {
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    #author-container {
-        font-size: 12px;
-        text-align: center;
-    }
-
-    #nav {
-        flex-flow: column;
-    }
-}
-
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3d3dy9pbmRleC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxzQkFBc0I7SUFDdEIsd0JBQXdCO0lBQ3hCLG1DQUFtQztBQUN2Qzs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixRQUFRO0lBQ1IsVUFBVTtJQUNWLFNBQVM7SUFDVCw2QkFBNkI7SUFDN0IsYUFBYTtJQUNiLGlCQUFpQjtJQUNqQixpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSxrQkFBa0I7SUFDbEIsT0FBTztBQUNYOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLFFBQVE7SUFDUixVQUFVO0lBQ1Ysb0JBQW9CO0lBQ3BCLHVDQUF1QztJQUN2QyxtQkFBbUI7SUFDbkIsVUFBVTtJQUNWLGdDQUFnQztJQUNoQyxnQkFBZ0I7QUFDcEI7O0FBRUE7SUFDSSxVQUFVO0lBQ1Ysb0NBQW9DO0FBQ3hDOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLFFBQVE7SUFDUixXQUFXO0lBQ1gsWUFBWTtJQUNaLGNBQWM7QUFDbEI7O0FBRUE7SUFDSSxXQUFXO0lBQ1gsOEJBQThCO0lBQzlCLDRDQUE0QztJQUM1QyxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLDZCQUE2QjtJQUM3QixZQUFZO0lBQ1osbUJBQW1CO0lBQ25CLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLHdCQUF3QjtBQUM1Qjs7QUFFQTtJQUNJLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxZQUFZO0FBQ2hCOztBQUVBOzs7SUFHSSxnQkFBZ0I7QUFDcEI7O0FBRUE7O0lBRUkscUJBQXFCO0lBQ3JCLHNCQUFzQjtBQUMxQjs7QUFFQTtJQUNJLFFBQVE7SUFDUixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUVBO0lBQ0kseUJBQXlCO0lBQ3pCLGlCQUFpQjtJQUNqQixlQUFlO0lBQ2YsZUFBZTtJQUNmLG1CQUFtQjtJQUNuQix1QkFBdUI7QUFDM0I7O0FBRUE7SUFDSSxnQkFBZ0I7SUFDaEIscUJBQXFCO0lBQ3JCLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLHVCQUF1QjtJQUN2Qix5QkFBeUI7SUFDekIsdUJBQXVCO0lBQ3ZCLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGdCQUFnQjtBQUNwQjs7QUFFQTtJQUNJLDJCQUEyQjtBQUMvQjs7QUFFQTtJQUNJLHdCQUF3QjtBQUM1Qjs7QUFFQTtJQUNJLGFBQWE7SUFDYixlQUFlO0lBQ2YsVUFBVTtJQUNWLE9BQU87SUFDUCxNQUFNO0lBQ04sV0FBVztJQUNYLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxvQ0FBb0M7SUFDcEMsaUJBQWlCO0lBQ2pCLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsWUFBWTtJQUNaLGFBQWE7SUFDYixjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksV0FBVztJQUNYLFlBQVk7SUFDWixlQUFlO0lBQ2YsaUJBQWlCO0lBQ2pCLGVBQWU7QUFDbkI7O0FBRUE7O0lBRUksc0JBQXNCO0lBQ3RCLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSxjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLHNCQUFzQjtJQUN0QiwyQkFBMkI7QUFDL0I7O0FBRUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjs7QUFFQTtJQUNJOztRQUVJLGNBQWM7SUFDbEI7O0lBRUE7UUFDSSxtQkFBbUI7SUFDdkI7QUFDSjs7QUFFQTtJQUNJOztRQUVJLGNBQWM7UUFDZCxrQkFBa0I7SUFDdEI7O0lBRUE7UUFDSSxlQUFlO1FBQ2Ysa0JBQWtCO0lBQ3RCOztJQUVBO1FBQ0ksaUJBQWlCO0lBQ3JCO0FBQ0oiLCJzb3VyY2VzQ29udGVudCI6WyI6cm9vdCB7XG4gICAgLS1ydWZmbGUtYmx1ZTogIzM3NTI4YztcbiAgICAtLXJ1ZmZsZS1vcmFuZ2U6ICNmZmFkMzM7XG4gICAgLS1zcGxhc2gtc2NyZWVuLWJhY2tncm91bmQ6ICMzMTQ5N2Q7XG59XG5cbmJvZHkge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBpbnNldDogMDtcbiAgICBwYWRkaW5nOiAwO1xuICAgIG1hcmdpbjogMDtcbiAgICBmb250LWZhbWlseTogTGF0bywgc2Fucy1zZXJpZjtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZmxvdzogY29sdW1uO1xuICAgIGJhY2tncm91bmQ6IGJsYWNrO1xufVxuXG4jbWFpbiB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGZsZXg6IDE7XG59XG5cbiNvdmVybGF5IHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgaW5zZXQ6IDA7XG4gICAgei1pbmRleDogMTtcbiAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcbiAgICBib3JkZXI6IDhweCBkYXNoZWQgdmFyKC0tcnVmZmxlLW9yYW5nZSk7XG4gICAgYm9yZGVyLXJhZGl1czogMzBweDtcbiAgICBvcGFjaXR5OiAwO1xuICAgIHRyYW5zaXRpb246IG9wYWNpdHkgMC4zcyBlYXNlLWluO1xuICAgIG1hcmdpbjogMTBweCA1cHg7XG59XG5cbiNvdmVybGF5LmRyYWcge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgdHJhbnNpdGlvbi10aW1pbmctZnVuY3Rpb246IGVhc2Utb3V0O1xufVxuXG4jcGxheWVyIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgaW5zZXQ6IDA7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgaGVpZ2h0OiBhdXRvO1xuICAgIG1hcmdpbjogMTBweCAwO1xufVxuXG4jbmF2IHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1ydWZmbGUtYmx1ZSk7XG4gICAgYm94LXNoYWRvdzogMCAzcHggNnB4IDVweCB2YXIoLS1ydWZmbGUtYmx1ZSk7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBwYWRkaW5nOiAxMHB4IDAgNXB4O1xuICAgIG1hcmdpbi1ib3R0b206IDVweDtcbn1cblxuI3RpdGxlIHtcbiAgICB0cmFuc2l0aW9uOiBvcGFjaXR5IDAuNXM7XG59XG5cbiN0aXRsZTpob3ZlciB7XG4gICAgb3BhY2l0eTogMC41O1xufVxuXG4jdGl0bGUgaW1nIHtcbiAgICBoZWlnaHQ6IDMycHg7XG59XG5cbiNmaWxlLXBpY2tlciBzZWxlY3QsXG4jZmlsZS1waWNrZXIgaW5wdXQsXG4jYXV0aG9yIHtcbiAgICBtYXJnaW4tbGVmdDogNXB4O1xufVxuXG4jbG9jYWwtZmlsZS1jb250YWluZXIsXG4jc2FtcGxlLXN3ZnMtY29udGFpbmVyIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cblxuI2xvY2FsLWZpbGUge1xuICAgIHdpZHRoOiAwO1xuICAgIG9wYWNpdHk6IDA7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuXG4jbG9jYWwtZmlsZS1sYWJlbCB7XG4gICAgY29sb3I6IHZhcigtLXJ1ZmZsZS1ibHVlKTtcbiAgICBwYWRkaW5nOiAzcHggMTBweDtcbiAgICBtYXJnaW46IDVweCAycHg7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG59XG5cbiNsb2NhbC1maWxlLW5hbWUge1xuICAgIG1pbi13aWR0aDogMTUwcHg7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIGZvbnQtc2l6ZTogc21hbGxlcjtcbn1cblxuI3NhbXBsZS1zd2ZzIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICBjb2xvcjogdmFyKC0tcnVmZmxlLWJsdWUpO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcbn1cblxuI2F1dGhvci1jb250YWluZXIge1xuICAgIGZvbnQtc2l6ZTogc21hbGw7XG59XG5cbiNhdXRob3Ige1xuICAgIGNvbG9yOiB2YXIoLS1ydWZmbGUtb3JhbmdlKTtcbn1cblxuLmhpZGRlbiB7XG4gICAgZGlzcGxheTogbm9uZSAhaW1wb3J0YW50O1xufVxuXG4ubW9kYWwge1xuICAgIGRpc3BsYXk6IG5vbmU7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHotaW5kZXg6IDE7XG4gICAgbGVmdDogMDtcbiAgICB0b3A6IDA7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgaGVpZ2h0OiAxMDAlO1xufVxuXG4ubW9kYWwtY29udGVudCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tcnVmZmxlLWJsdWUpO1xuICAgIG1hcmdpbjogMTV2aCBhdXRvO1xuICAgIHBhZGRpbmc6IDIwcHg7XG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gICAgd2lkdGg6IDMwMHB4O1xuICAgIGhlaWdodDogMjcwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbi5jbG9zZSB7XG4gICAgY29sb3I6ICNhYWE7XG4gICAgZmxvYXQ6IHJpZ2h0O1xuICAgIGZvbnQtc2l6ZTogMjhweDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbiNvcGVuLW1vZGFsLFxuI3JlbG9hZC1zd2Yge1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4jbWV0YWRhdGEge1xuICAgIG1hcmdpbjogMCBhdXRvO1xufVxuXG4jbWV0YWRhdGEgdGQge1xuICAgIHBhZGRpbmc6IDJweCAxcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDtcbiAgICBjb2xvcjogdmFyKC0tcnVmZmxlLW9yYW5nZSk7XG59XG5cbiNtZXRhZGF0YSB0ciB0ZDpudGgtY2hpbGQoMSkge1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHBhZGRpbmc6IDAgMTBweDtcbn1cblxuQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAod2lkdGggPD0gODAwcHgpIHtcbiAgICAjbG9jYWwtZmlsZS1jb250YWluZXIsXG4gICAgI3NhbXBsZS1zd2ZzLWNvbnRhaW5lciB7XG4gICAgICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIH1cblxuICAgICNsb2NhbC1maWxlLWNvbnRhaW5lciB7XG4gICAgICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgfVxufVxuXG5AbWVkaWEgb25seSBzY3JlZW4gYW5kICh3aWR0aCA8PSA2MDBweCkge1xuICAgICNsb2NhbC1maWxlLXN0YXRpYy1sYWJlbCxcbiAgICAjc2FtcGxlLXN3ZnMtbGFiZWwge1xuICAgICAgICBkaXNwbGF5OiBibG9jaztcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogNXB4O1xuICAgIH1cblxuICAgICNhdXRob3ItY29udGFpbmVyIHtcbiAgICAgICAgZm9udC1zaXplOiAxMnB4O1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgfVxuXG4gICAgI25hdiB7XG4gICAgICAgIGZsZXgtZmxvdzogY29sdW1uO1xuICAgIH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */</style></head><body>
-<ruffle-embed width="100%" height="100%" name="plugin" id="plugin" src="https://raw.githubusercontent.com/indiameme/jonathanrivera/main/games/ruffle/papaspizzeria_v2.swf" type="application/x-shockwave-flash"></ruffle-embed>
-  <script src="https://raw.githubusercontent.com/indiameme/jonathanrivera/main/games/ruffle/ruffle.js"></script>
-    
-
-</body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        .game-container {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://indiameme.github.io/jonathanrivera/games/ruffle/ruffle.js"></script>
+    <div class="game-container">
+        <embed pluginspage="http://www.macromedia.com/go/getflashplayer" src="https://indiameme.github.io/jonathanrivera/games/ruffle/papaspizzeria_v2.swf" type="application/x-shockwave-flash" width="100%" height="100%"></embed>
+    </div>
+</body>
+</html>
