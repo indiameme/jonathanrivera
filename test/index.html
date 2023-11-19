@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editable HTML</title>
+    <script>
+        function enableEditing() {
+            const editableDiv = document.getElementById('editable');
+            editableDiv.contentEditable = true;
+            editableDiv.style.border = '1px solid #000'; // Visual indication of the editable area
+        }
+
+        function saveChanges() {
+            const editedContent = document.getElementById('editable').innerHTML;
+            localStorage.setItem('editedContent', editedContent);
+            alert('Changes saved!');
+        }
+
+        function loadContent() {
+            const savedContent = localStorage.getItem('editedContent');
+            if (savedContent) {
+                document.getElementById('editable').innerHTML = savedContent;
+            }
+        }
+    </script>
+</head>
+<body onload="loadContent()">
+    <h1>Editable HTML</h1>
+    <button onclick="enableEditing()">Enable Editing</button>
+    <button onclick="saveChanges()">Save Changes</button>
+    
+    <div id="editable">
+        <p>This content is editable. Click "Enable Editing" to start editing.</p>
+    </div>
+</body>
+</html>
